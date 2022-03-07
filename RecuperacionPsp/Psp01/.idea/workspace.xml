@@ -29,7 +29,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Recuperaciones/RecuperacionAD/ud01/ud01a02/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -59,7 +59,6 @@
       <updated>1646145548296</updated>
       <workItem from="1646145549741" duration="1969000" />
       <workItem from="1646147665250" duration="1817000" />
-      <workItem from="1646323722295" duration="178000" />
     </task>
     <servers />
   </component>
