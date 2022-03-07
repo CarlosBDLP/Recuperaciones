@@ -1,0 +1,24 @@
+{
+  "vehiculos" : [ {
+    "id" : 1,
+    "marca" : "Citroen",
+    "modelo" : "C4",
+    "version" : "cool",
+    "cilindrada" : 1500,
+    "potencia" : 92.0
+  }, {
+    "id" : 2,
+    "marca" : "Citroen",
+    "modelo" : "C3",
+    "version" : "premium",
+    "cilindrada" : 1200,
+    "potencia" : 60.0
+  }, {
+    "id" : 3,
+    "marca" : "Dacia",
+    "modelo" : "Logan",
+    "version" : "plus",
+    "cilindrada" : 1900,
+    "potencia" : 130.0
+  } ]
+}
