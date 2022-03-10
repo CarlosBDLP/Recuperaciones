@@ -1,5 +1,7 @@
 package es.cipfpbatoi.ad2122.ud01a03.dao;
 
+import es.cipfpbatoi.ad2122.ud01a03.model.Vehiculo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,12 +9,10 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.cipfpbatoi.ad2122.ud01a03.model.Vehiculo;
-
 
 public class DAOVehiculoRandomAccessFile {
 
-    private File file;
+    private final File file;
 
     public DAOVehiculoRandomAccessFile(String path) throws FileNotFoundException {
         this.file = new File(path);
@@ -22,7 +22,7 @@ public class DAOVehiculoRandomAccessFile {
 
         try
                 (
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(this.file, "rw");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(this.file, "rw")
                 ) {
             randomAccessFile.seek(randomAccessFile.length());
             randomAccessFile.writeInt(vehiculo.getIdVehiculo());
@@ -38,7 +38,7 @@ public class DAOVehiculoRandomAccessFile {
 
         try
                 (
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")
                 ) {
             while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
 
@@ -93,7 +93,7 @@ public class DAOVehiculoRandomAccessFile {
 
         try
                 (
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")
                 ) {
             while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
 
@@ -144,7 +144,7 @@ public class DAOVehiculoRandomAccessFile {
 
         try
                 (
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")
                 ) {
 
 
@@ -158,7 +158,7 @@ public class DAOVehiculoRandomAccessFile {
                 // saltamos al siguiente registro, sin leer todos los datos del vehiculo
 
 
-                String marca= "";
+                String marca = "";
                 for (int i = 0; i < Vehiculo.CHAR_LENGHT_MARCA; i++) {
                     marca += randomAccessFile.readChar();
                 }
@@ -170,7 +170,7 @@ public class DAOVehiculoRandomAccessFile {
                     modeloEncontrado += randomAccessFile.readChar();
                 }
                 if (!modeloEncontrado.trim().equals(modeloAbuscar)) {
-                    randomAccessFile.skipBytes(Vehiculo.BYTES_LENGHT_VEHICULO -104);
+                    randomAccessFile.skipBytes(Vehiculo.BYTES_LENGHT_VEHICULO - 104);
                     continue;
                 }
                 vehiculo.setModelo(modeloEncontrado);
@@ -197,7 +197,7 @@ public class DAOVehiculoRandomAccessFile {
 
         try
                 (
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")
                 ) {
 
 
@@ -211,7 +211,7 @@ public class DAOVehiculoRandomAccessFile {
                 // saltamos al siguiente registro, sin leer todos los datos del vehiculo
 
 
-                String marca= "";
+                String marca = "";
                 for (int i = 0; i < Vehiculo.CHAR_LENGHT_MARCA; i++) {
                     marca += randomAccessFile.readChar();
                 }
@@ -229,8 +229,8 @@ public class DAOVehiculoRandomAccessFile {
                     versionaEncontrar += randomAccessFile.readChar();
                 }
 
-                if (!versionAbuscar.trim().equals(versionaEncontrar)){
-                    randomAccessFile.skipBytes(Vehiculo.BYTES_LENGHT_VEHICULO -154);
+                if (!versionAbuscar.trim().equals(versionaEncontrar)) {
+                    randomAccessFile.skipBytes(Vehiculo.BYTES_LENGHT_VEHICULO - 154);
                     continue;
                 }
                 vehiculo.setVersion(versionaEncontrar);

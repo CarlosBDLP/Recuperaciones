@@ -45,9 +45,8 @@ class DAOVehiculoRandomAccessFileTest {
     @Order(1)
     void testPersistirUnVehiculo() {
 
-        DAOVehiculoRandomAccessFile daoVehiculo = null;
         try {
-            daoVehiculo = new DAOVehiculoRandomAccessFile(DAOVehiculoRandomAccessFileTest.FICHERO_GRUPO_1);
+            DAOVehiculoRandomAccessFile daoVehiculo = new DAOVehiculoRandomAccessFile(DAOVehiculoRandomAccessFileTest.FICHERO_GRUPO_1);
             daoVehiculo.save(this.crearVehiculo(1, "Citroen", "C2", "cool", 1500, 92.0));
             daoVehiculo.save(this.crearVehiculo(2, "Citroen", "C3", "cool", 1500, 92.0));
             daoVehiculo.save(this.crearVehiculo(3, "Citroen", "C4", "cool", 1500, 92.0));
@@ -65,12 +64,7 @@ class DAOVehiculoRandomAccessFileTest {
     }
 
 
-    private Vehiculo crearVehiculo(int id,
-                                   String marca,
-                                   String modelo,
-                                   String version,
-                                   long cilindrada,
-                                   double potencia) {
+    private Vehiculo crearVehiculo(int id, String marca, String modelo, String version, long cilindrada, double potencia) {
         Vehiculo vehiculo = new Vehiculo();
         vehiculo.setIdVehiculo(id);
         vehiculo.setMarca(marca);
@@ -90,10 +84,13 @@ class DAOVehiculoRandomAccessFileTest {
         DAOVehiculoRandomAccessFile daoVehiculo = null;
         try {
             daoVehiculo = new DAOVehiculoRandomAccessFile(DAOVehiculoRandomAccessFileTest.FICHERO_GRUPO_1);
-            vehiculo = daoVehiculo.findById(1);
         } catch (FileNotFoundException e) {
             fail("El test debería haber leido el vehiculo");
-        } catch (IOException e) {
+        }
+
+        try {
+            vehiculo = daoVehiculo.findById(1);
+        }  catch (IOException e) {
             fail("El test debería haber leido el vehiculo");
         }
 
@@ -105,8 +102,7 @@ class DAOVehiculoRandomAccessFileTest {
         assertEquals(vehiculo.getPotencia(), 92.0);
 
         try {
-            daoVehiculo = new DAOVehiculoRandomAccessFile(DAOVehiculoRandomAccessFileTest.FICHERO_GRUPO_1);
-            vehiculo = daoVehiculo.findById(2);
+           vehiculo = daoVehiculo.findById(2);
         } catch (FileNotFoundException e) {
             fail("El test debería haber leido el vehiculo");
         } catch (IOException e) {
@@ -134,35 +130,39 @@ class DAOVehiculoRandomAccessFileTest {
 
     @Test
     @Order(3)
-    void comparamarca(){
+    void comparamarca() {
 
-        Vehiculo vehiculo = null;
+        List<Vehiculo> vehiculosconMarca = null;
 
         DAOVehiculoRandomAccessFile daoVehiculo = null;
-        List<Vehiculo> vehiculosconMarca = new ArrayList<>();
-
         try {
             daoVehiculo = new DAOVehiculoRandomAccessFile(DAOVehiculoRandomAccessFileTest.FICHERO_GRUPO_1);
-            // TODO preguntar a jorge el casting
-            vehiculo = (Vehiculo) daoVehiculo.findByMarca("dacia");
-           // vehiculo = (Vehiculo) daoVehiculo.findByMarca("Dacia");
         } catch (FileNotFoundException e) {
             fail("El test debería haber leido el vehiculo");
+        }
+
+
+        try {
+            vehiculosconMarca = daoVehiculo.findByMarca("Citroen");
         } catch (IOException e) {
             fail("El test debería haber leido el vehiculo");
         }
 
-        assertEquals(vehiculo.getIdVehiculo(), 2);
-        assertEquals(vehiculo.getMarca().toString().trim(), "Citroen");
-        assertEquals(vehiculo.getModelo().toString().trim(), "C3");
-        assertEquals(vehiculo.getVersion().toString().trim(), "cool");
-        assertEquals(vehiculo.getCilindrada(), 1500);
-        assertEquals(vehiculo.getPotencia(), 92.0);
+        //TODO
+        // busca como ejercicios de como recorrer arrays
+
+
+        assertEquals(vehiculosconMarca.size(), 4);
+
+//        assertEquals(vehiculo.getIdVehiculo(), 2);
+//        assertEquals(vehiculo.getMarca().toString().trim(), "Citroen");
+//        assertEquals(vehiculo.getModelo().toString().trim(), "C3");
+//        assertEquals(vehiculo.getVersion().toString().trim(), "cool");
+//        assertEquals(vehiculo.getCilindrada(), 1500);
+//        assertEquals(vehiculo.getPotencia(), 92.0);
 
 
     }
-
-
 
 
 }
